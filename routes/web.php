@@ -19,8 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pasien', [PasienController::class, 'index']);
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/pasien', [PasienController::class, 'index'])->name('menu.pasien.index');
