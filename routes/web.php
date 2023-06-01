@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\PasienController;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/pasien', [PasienController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
