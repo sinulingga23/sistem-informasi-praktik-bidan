@@ -43,6 +43,32 @@ class PasienController extends Controller
     }
 
     public function create() {
-        return view('pasien.create');
+        $golonganDarah = [[
+            "golonganDarah" => "A",
+        ],[
+            "golonganDarah" => "B",
+        ], [
+            "golonganDarah" => "AB",
+        ], [
+            "golonganDarah" => "O",
+        ]];
+        return view('pasien.create', ["golonganDarah" => $golonganDarah]);
+    }
+
+    public function store(Request $request) {
+        // $validatedData = $request->validate([
+        //     'title' => ['required', 'unique:posts', 'max:255'],
+        //     'body' => ['required'],
+        // ]);
+        $validatedData = $request->validate([
+            'namaDepan' => ['required', 'max:50'],
+            'tempatLahir' => ['required', 'max:150'],
+            'tanggalLahir' => ['required'],
+            'alamat' => ['required', 'max:200'],
+        ]);
+
+        dd($validatedData);
+
+        return view('pasien.index');
     }
 }

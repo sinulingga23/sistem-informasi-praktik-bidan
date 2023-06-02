@@ -21,3 +21,4 @@ Route::get('/', function () {
 
 Route::get('/pasien', [PasienController::class, 'index'])->name('menu.pasien.index');
 Route::get('/pasien/create', [PasienController::class, 'create'])->name('menu.pasien.create');
+Route::post('/pasien', [PasienController::class,'store'])->name('menu.pasien.store');
