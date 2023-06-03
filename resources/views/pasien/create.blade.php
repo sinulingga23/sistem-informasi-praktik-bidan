@@ -68,7 +68,7 @@
                   <div class="form-group">
                     <label for="tanggalLahir">Tanggal Lahir</label>
                     <input type="date" class="form-control @error('tanggalLahir') is-invalid @enderror"
-                      id="tanggalLahir" name="tanggalLahir" placeholder="Enter tanggal lahir" />
+                      id="tanggalLahir" name="tanggalLahir" value="{{ old('tanggalLahir') }}" />
                     @error('tanggalLahir')
                     <div class="text-danger" id="error-tanggal-lahir">Tanggal lahir wajib diisi.</div>
                     @enderror
@@ -81,30 +81,33 @@
                   <div class="form-group">
                     <label for="jenisKelamin">Jenis Kelamin</label>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="jenisKelamin" value="P" id="jenisKelamin"
-                        checked="{{ old('jenisKelamin') == 'P' ? 1 : 0 }}">
+                      <input class="form-check-input" type="radio" name="jenisKelamin" value="P" id="jenisKelamin" {{
+                        old('jenisKelamin')=='P' ? 'checked' : '' }}>
                       <label class="form-check-label" for="jenisKelamin">
                         Perempuan
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="jenisKelamin" value="L" id="jenisKelamin"
-                        checked="{{ old('jenisKelamin') == 'L' ? 1 : 0 }}">
+                      <input class="form-check-input" type="radio" name="jenisKelamin" value="L" id="jenisKelamin" {{
+                        old('jenisKelamin')=='L' ? 'checked' : '' }}>
                       <label class="form-check-label" for="jenisKelamin">
                         Laki - Laki
                       </label>
                     </div>
                   </div>
-
+                  @error('jenisKelamin')
+                  <div class="text-danger" id="error-jenis-kelamin">Jenis Kelamin wajib dipilih.</div>
+                  @enderror
                 </div>
 
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="Golongan Darah">Golongan Darah</label>
                     <select id="golonganDarah" name="golonganDarah" class="form-control">
-                      <option value="-">-</option>
+                      <option value="-" {{ old('golonganDarah')=='-' ? 'selected' : '' }}>-</option>
                       @foreach($golonganDarah as $key => $item)
-                      <option value="{{ $item['golonganDarah'] }}">{{ $item['golonganDarah'] }}</option>
+                      <option value="{{ $item['golonganDarah'] }}" {{ old('golonganDarah')==$item['golonganDarah']
+                        ? 'selected' : '' }}>{{ $item['golonganDarah'] }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -118,6 +121,10 @@
                     <input type="text" class="form-control" id="noHandphonePasien" name="noHandphonePasien"
                       value="{{ old('noHandphonePasien') ? old('noHandphonePasien') : '' }}"
                       placeholder="Enter no handphone pasien">
+                    @if ($errors->has('noHandphonePasien'))
+                    <div class="text-danger" id="error-no-handphone-pasien">{{ $errors->first('noHandphonePasien') }}
+                    </div>
+                    @endif
                   </div>
                 </div>
 
@@ -127,6 +134,10 @@
                     <input type="text" class="form-control" id="noHandphonePendampingPasien"
                       value="{{ old('noHandphonePendampingPasien') ? old('noHandphonePendampingPasien') : '' }}"
                       name="noHandphonePendampingPasien" placeholder="Enter no handphone pendamping pasien">
+                    @if ($errors->has('noHandphonePendampingPasien'))
+                    <div class="text-danger" id="error-no-handphone-pendamping-pasien">{{
+                      $errors->first('noHandphonePendampingPasien') }}</div>
+                    @endif
                   </div>
                 </div>
               </div>
@@ -195,12 +206,38 @@
 
     const dateTglLahir = document.getElementsByName('tanggalLahir')[0];
     dateTglLahir.addEventListener('click', function ($event) {
-      $event.preventDefault();
       dateTglLahir.classList.remove('is-invalid');
 
       if (document.getElementById('error-tanggal-lahir')) {
         document.getElementById('error-tanggal-lahir').remove();
+      }
 
+    });
+
+    const rbJenisKelamin = document.getElementsByName('jenisKelamin');
+    for (let i = 0; i < rbJenisKelamin.length; i++) {
+      rbJenisKelamin[i].addEventListener('click', function ($event) {
+        if (document.getElementById('error-jenis-kelamin')) {
+          document.getElementById('error-jenis-kelamin').remove();
+        }
+      });
+    }
+
+    const txtNoHandphonePasien = document.getElementsByName('noHandphonePasien')[0];
+    txtNoHandphonePasien.addEventListener('click', function($event) {
+      $event.preventDefault();
+
+      if (document.getElementById('error-no-handphone-pasien')) {
+        document.getElementById('error-no-handphone-pasien').remove();
+      }
+    });
+
+    const txtNoHandphonePendampingPasien = document.getElementsByName('noHandphonePendampingPasien')[0];
+    txtNoHandphonePendampingPasien.addEventListener('click', function($event) {
+      $event.preventDefault();
+
+      if (document.getElementById('error-no-handphone-pendamping-pasien')) {
+        document.getElementById('error-no-handphone-pendamping-pasien').remove();
       }
     });
   });

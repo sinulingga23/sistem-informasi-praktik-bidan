@@ -73,12 +73,13 @@
                 <tr>
                   <td>{{ $key+1 }}</td>
                   <td>{{ $item['code'] }}</td>
-                  <td>{{ $item['namaLengkap'] }}</td>
-                  <td>{{ $item['tanggalLahir'] }}</td>
-                  <td>{{ $item['jenisKelamin'] }}</td>
-                  <td>{{ $item['golonganDarah']}}</td>
-                  <td>{{ $item['noHandphonePasien']}}</td>
-                  <td>{{ $item['noHandphonePendampingPasien']}}</td>
+                  <td>{{ $item['nama_depan'] }} {{ $item['nama_belakang'] }}</td>
+                  <td>{{ $item['tanggal_lahir'] }}</td>
+                  <td>{{ $item['jenis_kelamin'] == 'L' ? 'Laki - Laki' : 'Perempuan' }}</td>
+                  <td>{{ $item['golongan_darah']}}</td>
+                  <td>{{ $item['no_handphone_pasien']}}</td>
+                  <td>{{ $item['no_handphone_pendamping_pasien']}}</td>
+                  <td>{{ $item['alamat'] }}</td>
                 </tr>
               @empty
               <tr>
@@ -92,6 +93,8 @@
       </div>
       <!-- /.card -->
     </div>
+
+    {{ $listPasien->links() }}
   </div>
 </div>
 @endsection
