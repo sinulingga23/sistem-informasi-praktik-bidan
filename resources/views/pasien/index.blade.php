@@ -58,6 +58,7 @@
             <thead>
               <tr>
                 <th>#</th>
+                <th>RM</th>
                 <th>Code</th>
                 <th>Nama</th>
                 <th>Tanggal Lahir</th>
@@ -71,7 +72,8 @@
             <tbody>
               @forelse ($listPasien as $key => $item)
                 <tr>
-                  <td>{{ $key+1 }}</td>
+                  <td>{{ $key+1 }} </td>
+                  <td><a href="{{ route('menu.rekam-medis.index', ['pasienId' => $item['pasien_id']]) }}">Lihat</a></td>
                   <td>{{ $item['code'] }}</td>
                   <td>{{ $item['nama_depan'] }} {{ $item['nama_belakang'] }}</td>
                   <td>{{ $item['tanggal_lahir'] }}</td>
