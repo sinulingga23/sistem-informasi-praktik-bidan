@@ -84,25 +84,27 @@
     <div class="col-md-12">
       <ul class="nav justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" href="#">KB</a>
+          <a class="nav-link" href="{{ route('menu.rekam-medis.keluarga-berencana') }}">KB</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">A N C</a>
+          <a class="nav-link" href="{{ route('menu.rekam-medis.antenatal-care') }}">A N C</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Persalinan</a>
+          <a class="nav-link" href="{{ route('menu.rekam-medis.persalinan') }}">Persalinan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Nifas</a>
+          <a class="nav-link" href="{{ route('menu.rekam-medis.nifas') }}">Nifas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Bayi</a>
+          <a class="nav-link" href="{{ route('menu.rekam-medis.bayi') }}">Bayi</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Umum</a>
+          <a class="nav-link" href="{{ route('menu.rekam-medis.umum') }}">Umum</a>
         </li>
       </ul>
     </div>
   </div>
+
+  @yield('content-rekam-medis')
 </div>
 @endsection
